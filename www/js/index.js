@@ -113,11 +113,11 @@ var app = {
                 type: 'GET',
                 dataType: 'json',
                 success: function(data){
-                    var source   = $("#event-template").html();
+                    var source   = $("#events-template").html();
                     var template = Handlebars.compile(source);
                     var eventData = template(data);
-                    $('#event-data').html(eventData);
-                    $('#event-data').trigger('create');
+                    $('#events-data').html(eventData);
+                    $('#events-data').trigger('create');
                     dfd1.resolve(data);
 
                 },
