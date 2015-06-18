@@ -118,7 +118,7 @@ var app = {
                     var eventData = template(data);
                     $('#event-data').html(eventData);
                     $('#event-data').trigger('create');
-                    dfd.resolve(data);
+                    dfd1.resolve(data);
 
                 },
                 error: function(data){
