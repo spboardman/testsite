@@ -114,7 +114,7 @@ var app = {
                 type: 'GET',
                 dataType: 'json',
                 success: function(data){
-                    var source   = $("#event-template").html();
+                    var source   = $("#events-template").html();
                     var template = Handlebars.compile(source);
                     var eventData = template(data);
                     $('#events-data').html(eventData);
