@@ -105,23 +105,45 @@ var app = {
 
     },
 
-    portfolio: function(){
-        $.ajax({
-            url: 'https://www.doncasterdiary.co.uk/?json=get_recent_posts&post_type=tribe_events',
-            type: 'GET',
-            dataType: 'json',
-            success: function(data){
-                var source   = $("#portfolio-template").html();
-                var template = Handlebars.compile(source);
-                var portfolioData = template(data);
-                $('#portfolio-data').html(portfolioData);
-                $('#portfolio-data').trigger('create');
 
-            },
-            error: function(data){
-                console.log(data);
-            }
+
+events: function(){
+        function getEvents() {
+            var dfd = $.Deferred();
+            $.ajax({
+                url: 'https://www.doncasterdiary.co.uk/?json=get_recent_posts&post_type=tribe_events',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    var source   = $("#event-template").html();
+                    var template = Handlebars.compile(source);
+                    var eventData = template(data);
+                    $('#event-data').html(blogData);
+                    $('#event-data').trigger('create');
+                    dfd.resolve(data);
+
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            });
+            return dfd.promise();
+        };
+
+        getEvents().then(function(data){
+            $('#all-events').on('click','li', function(e){                
+                localStorage.setItem('postData', JSON.stringify(data.posts[$(this).index()]));
+            });
         });
-    }
 
-};
+        
+    },
+    singleevent: function() {
+        
+            var postDataStorage = localStorage.getItem('postData');
+            var source   = $("#event-template").html();
+            var template = Handlebars.compile(source);
+            var postData = template(JSON.parse(postDataStorage));    
+            $('#event-data').html(postData);
+
+    },
