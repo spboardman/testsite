@@ -107,7 +107,7 @@ var app = {
 	
 	events: function(){
         function getEvents() {
-            var dfd = $.Deferred();
+            var dfd1 = $.Deferred();
             $.ajax({
                 url: 'https://www.doncasterdiary.co.uk/?json=get_recent_posts&post_type=tribe_events',
                 type: 'GET',
@@ -125,7 +125,7 @@ var app = {
                     console.log(data);
                 }
             });
-            return dfd.promise();
+            return dfd1.promise();
         };
 
         getEvents().then(function(data){
