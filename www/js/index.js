@@ -105,46 +105,53 @@ var app = {
 
     },
 	
+	
 	events: function(){
         function getEvents() {
-            var dfd1 = $.Deferred();
+            var dfd = $.Deferred();
             $.ajax({
                 url: 'https://www.doncasterdiary.co.uk/?json=get_recent_posts&post_type=tribe_events',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data){
-                    var source   = $("#events-template").html();
+                    var source   = $("#event-template").html();
                     var template = Handlebars.compile(source);
                     var eventData = template(data);
                     $('#events-data').html(eventData);
                     $('#events-data').trigger('create');
-                    dfd1.resolve(data);
+                    dfd.resolve(data);
 
                 },
                 error: function(data){
                     console.log(data);
                 }
             });
-            return dfd1.promise();
+            return dfd.promise();
         };
 
         getEvents().then(function(data){
             $('#all-events').on('click','li', function(e){                
-                localStorage.setItem('eventsData', JSON.stringify(data.posts[$(this).index()]));
+                localStorage.setItem('eventData', JSON.stringify(data.posts[$(this).index()]));
             });
         });
 
         
     },
-    singleevent: function() {
+    event: function() {
         
-            var eventDataStorage = localStorage.getItem('eventsData');
+            var eventDataStorage = localStorage.getItem('eventData');
             var source   = $("#event-template").html();
             var template = Handlebars.compile(source);
             var eventData = template(JSON.parse(eventDataStorage));    
             $('#event-data').html(eventData);
 
-    }
+    },
+	
+	
+
+	
+	
+	
 	
 	
 
