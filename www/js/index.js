@@ -104,10 +104,8 @@ var app = {
             $('#single-data').html(postData);
 
     },
-
-
-
-events: function(){
+	
+	events: function(){
         function getEvents() {
             var dfd = $.Deferred();
             $.ajax({
@@ -146,4 +144,15 @@ events: function(){
             var postData = template(JSON.parse(postDataStorage));    
             $('#event-data').html(postData);
 
-    },
+    }
+	
+	
+
+    
+
+};
+
+
+
+
+
