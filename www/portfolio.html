@@ -22,15 +22,17 @@
 
 
         <script id="portfolio-template" type="text/x-handlebars-template">
+            <ul data-role="listview" data-inset="true" id="all-posts">
             
             {{#each posts}}
-                <div class="portfolio-piece">
-
-                {{content}}
-                <h4>{{title}}</h4>
-                </div>
-            {{/each}}
             
+            {{#each posts}}
+                 <li><div class="portfolio-piece">
+
+                <h4>{{title}}</h4>
+                </div></li>
+            {{/each}}
+            </ul>
         </script>
 
 
