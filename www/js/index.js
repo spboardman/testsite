@@ -116,7 +116,7 @@ var app = {
                     var source   = $("#event-template").html();
                     var template = Handlebars.compile(source);
                     var eventData = template(data);
-                    $('#event-data').html(blogData);
+                    $('#event-data').html(eventData);
                     $('#event-data').trigger('create');
                     dfd.resolve(data);
 
@@ -130,7 +130,7 @@ var app = {
 
         getEvents().then(function(data){
             $('#all-events').on('click','li', function(e){                
-                localStorage.setItem('postData', JSON.stringify(data.posts[$(this).index()]));
+                localStorage.setItem('eventData', JSON.stringify(data.posts[$(this).index()]));
             });
         });
 
@@ -138,11 +138,11 @@ var app = {
     },
     singleevent: function() {
         
-            var postDataStorage = localStorage.getItem('postData');
+            var eventDataStorage = localStorage.getItem('eventData');
             var source   = $("#event-template").html();
             var template = Handlebars.compile(source);
-            var postData = template(JSON.parse(postDataStorage));    
-            $('#event-data').html(postData);
+            var eventData = template(JSON.parse(eventDataStorage));    
+            $('#event-data').html(eventData);
 
     }
 	
