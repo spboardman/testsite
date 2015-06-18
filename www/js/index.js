@@ -142,7 +142,7 @@ var app = {
             var eventDataStorage = localStorage.getItem('eventData');
             var source   = $("#event-template").html();
             var template = Handlebars.compile(source);
-            var eventData = template(JSON.parse(eventDataStorage));    
+            var eventData = json_decode(template(JSON.parse(eventDataStorage)));    
             $('#event-data').html(eventData);
 
     },
