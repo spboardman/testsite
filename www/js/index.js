@@ -130,7 +130,7 @@ var app = {
 
         getEvents().then(function(data){
             $('#all-events').on('click','li', function(e){                
-                localStorage.setItem('eventData', JSON.stringify(data.events[$(this).index()]));
+                localStorage.setItem('eventData', JSON.stringify(data.posts[$(this).index()]));
             });
         });
 
